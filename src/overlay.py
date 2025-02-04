@@ -24,6 +24,7 @@ from src.app_update import AppUpdate
 from src.card_logic import (
     CardResult,
     copy_deck,
+    get_passed_metrics,
     stack_cards,
     row_color_tag,
     field_process_sort,
@@ -617,6 +618,15 @@ class Overlay(ScaledWindow):
 
         self.missing_table = self._create_header("missing_table", self.missing_table_frame, 0, self.fonts_dict["All.TableRow"], headers,
                                                  self.table_width, True, True, constants.TABLE_STYLE, False)
+        
+        self.passed_frame = tkinter.Frame(self.root)
+        self.passed_cards_label = Label(
+            self.passed_frame, text="Value of Passed Cards", style="MainSectionsBold.TLabel")
+
+        self.passed_table_frame = tkinter.Frame(self.root, width=10)
+
+        self.passed_table = self._create_header("passed_table", self.passed_table_frame, 0, self.fonts_dict["All.TableRow"], headers,
+                                                 self.table_width, True, True, constants.TABLE_STYLE, False)
 
         self.stat_frame = tkinter.Frame(self.root)
 
@@ -677,7 +687,9 @@ class Overlay(ScaledWindow):
         self.missing_table_frame.grid(row=12, column=0, columnspan=2)
         self.stat_frame.grid(row=13, column=0, columnspan=2, sticky='nsew')
         self.stat_table.grid(row=14, column=0, columnspan=2, sticky='nsew')
-        footnote_label.grid(row=15, column=0, columnspan=2)
+        self.passed_frame.grid(row=15, column=0, columnspan=2, sticky='nsew')
+        self.passed_table_frame.grid(row=16, column=0, columnspan=2)
+        footnote_label.grid(row=17, column=0, columnspan=2)
 
         self.refresh_button.pack(expand=True, fill="both")
 
@@ -988,6 +1000,66 @@ class Overlay(ScaledWindow):
         except Exception as error:
             logger.error(error)
 
+    def __update_passed_table(self, card_list):
+        '''Update the table that lists the sum of passed value for each color'''
+        try:
+            # TODO this is wasteful to recompute the max everytime
+            card_types = constants.CARD_TYPE_DICT[constants.CARD_TYPE_SELECTION_ALL]
+            colors_filtered = {}
+            for color, symbol in constants.CARD_COLORS_DICT.items():
+                metrics = {}
+                tmp_metrics = []
+                for pack_card_list in card_list.values():
+                    if symbol:
+                        card_colors_sorted = deck_card_search(
+                            pack_card_list, symbol, card_types[0], card_types[1], card_types[2], card_types[3])
+                    else:
+                        card_colors_sorted = deck_card_search(
+                            pack_card_list, symbol, card_types[0], card_types[1], True, False)
+                    
+                    tmp_metrics.append(get_passed_metrics(card_colors_sorted))
+                # Sum up the pack values, probably a cleaner way
+                for pack_metrics in tmp_metrics:
+                    for key, value in pack_metrics.items():
+                        if key not in metrics:
+                            metrics[key] = value
+                        else:
+                            metrics[key] += value
+                colors_filtered[color] = {}
+                colors_filtered[color]["symbol"] = symbol
+                colors_filtered[color]["metrics"] = metrics
+
+            # Sort list by total
+            result_list = dict(sorted(colors_filtered.items(
+            ), key=lambda item: item[1]["total"], reverse=True))
+
+            # clear the previous rows
+            for row in self.passed_table.get_children():
+                self.passed_table.delete(row)
+
+            list_length = len(result_list)
+
+            if list_length:
+                self.passed_table.config(height=list_length)
+            else:
+                self.passed_table.config(height=0)
+
+            for count, (color, values) in enumerate(result_list.items()):
+                row_tag = identify_table_row_tag(
+                    self.configuration.settings.card_colors_enabled, values["symbol"], count)
+                self.passed_table.insert(
+                    "",
+                    index=count,
+                    iid=count,
+                    values=(
+                        color,
+                        *values['metrics'],
+                    ),
+                    tag=(row_tag,),
+                )
+        except Exception as error:
+            logger.error(error)
+    
     def __clear_compare_table(self):
         '''Clear the rows within the Card Compare table'''
         self.compare_list.clear()
@@ -1713,6 +1785,7 @@ class Overlay(ScaledWindow):
         pack_cards = self.draft.retrieve_current_pack_cards()
         picked_cards = self.draft.retrieve_current_picked_cards()
         missing_cards = self.draft.retrieve_current_missing_cards()
+        passed_cards = self.draft.retrieve_passed_cards()
 
         self.__update_current_draft_label(event_set, event_type)
         self.__update_pack_pick_label(current_pack, current_pick)
@@ -1725,6 +1798,8 @@ class Overlay(ScaledWindow):
                                     picked_cards,
                                     filtered,
                                     fields)
+        
+        self.__update_passed_table(passed_cards, filtered, fields)
 
         self.__update_deck_stats_callback()
         self.__update_taken_table()
@@ -3168,6 +3243,11 @@ class Overlay(ScaledWindow):
                       self.missing_cards_checkbox_value.get())
         toggle_widget(self.missing_table_frame,
                       self.missing_cards_checkbox_value.get())
+        # TODO fix this
+        toggle_widget(self.passed_frame,
+                      1)
+        toggle_widget(self.passed_table_frame,
+                      1)
 
         toggle_widget(self.refresh_button_frame,
                       self.refresh_button_checkbox_value.get())

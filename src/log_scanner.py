@@ -58,6 +58,7 @@ class ArenaScanner:
         self.sideboard = []
         self.pack_cards = [[]] * 8
         self.initial_pack = [[]] * 8
+        self.passed_cards = []
         self.previous_picked_pack = 0
         self.current_picked_pick = 0
         self.file_size = 0
@@ -115,6 +116,7 @@ class ArenaScanner:
         self.sideboard = []
         self.pack_cards = [[]] * 8
         self.initial_pack = [[]] * 8
+        self.passed_cards = []
         self.current_pack = 0
         self.previous_picked_pack = 0
         self.current_picked_pick = 0
@@ -493,6 +495,7 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
+                            self.passed_cards.extend(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -555,6 +558,7 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
+                            self.passed_cards.extend(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -678,6 +682,7 @@ class ArenaScanner:
                                     self.initial_pack[pack_index] = pack_cards
 
                                 self.pack_cards[pack_index] = pack_cards
+                                self.passed_cards.extend(pack_cards)
 
                                 self.current_pack = pack
                                 self.current_pick = pick
@@ -916,6 +921,7 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
+                            self.passed_cards.extend(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -1136,6 +1142,11 @@ class ArenaScanner:
         '''Return the card data for all of the cards that were picked during the draft'''
         taken_cards = self.set_data.get_data_by_id(self.taken_cards)
         return taken_cards
+    
+    def retrieve_passed_cards(self):
+        '''Return the card data for all of the cards that were passed during the draft'''
+        passed_cards = self.set_data.get_data_by_id(self.passed_cards)
+        return passed_cards
 
     def retrieve_tier_data(self, files):
         '''Parse a tier list file and return the tier data'''

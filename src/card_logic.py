@@ -264,6 +264,30 @@ def format_tier_results(value, old_format, new_format):
     return new_value
 
 
+def get_passed_metrics(cards):
+    # TODO how should this be set? by the set averages?
+    playable_threshold = 55
+    try:
+        # TODO figure out the right way to get normalized data
+        # Either compute set stats and then use normalizer here
+        # Or precompute the values and set them on all the cards
+        metrics = {
+            constants.DATA_FIELD_ALSA: max([card.constants.DATA_FIELD_ALSA for card in cards]),
+            constants.DATA_FIELD_GIHWR: max([card.constants.DATA_FIELD_GIHWR for card in cards]),
+            'num_cards': len(cards),
+            'num_playables': sum(
+                [
+                    card.constants.DATA_FIELD_GIHWR >= playable_threshold
+                    for card in cards
+                ]
+            )
+        }
+
+    except Exception as error:
+        logger.error(error)
+    return metrics
+
+
 def deck_card_search(deck, search_colors, card_types, include_types, include_colorless, include_partial):
     """This function retrieves a subset of cards that meet certain criteria (type, color, etc.)"""
     card_color_sorted = {}
