@@ -159,7 +159,7 @@ TIER_FILE_PREFIX = "Tier_"
 
 DRAFT_DETECTION_CATCH_ALL = ["Draft", "draft"]
 
-DRAFT_START_STRING_EVENT_JOIN = "[UnityCrossThreadLogger]==> Event_Join "
+DRAFT_START_STRING_EVENT_JOIN = "[UnityCrossThreadLogger]==> EventJoin "
 DRAFT_START_STRING_BOT_DRAFT = "[UnityCrossThreadLogger]==> BotDraft_DraftStatus "
 
 DRAFT_START_STRINGS = [DRAFT_START_STRING_EVENT_JOIN,
@@ -278,6 +278,10 @@ LOG_LOCATION_WINDOWS = os.path.join('Users', getpass.getuser(
 ), "AppData", "LocalLow", "Wizards Of The Coast", "MTGA", LOG_NAME)
 LOG_LOCATION_OSX = os.path.join(
     "Library", "Logs", "Wizards of the Coast", "MTGA", LOG_NAME)
+LOG_LOCATION_LINUX = os.path.join(
+    ".local", "share", "Steam", "steamapps", "compatdata", 
+    "2141910", "pfx", "drive_c", "users", "steamuser", "AppData", "LocalLow", 
+    "Wizards Of The Coast", "MTGA", LOG_NAME)
 
 DEFAULT_GIHWR_AVERAGE = 0.0
 
