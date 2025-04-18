@@ -71,6 +71,9 @@ DATA_FIELD_NGND = "ngnd"
 DATA_FIELD_GDWR = "gdwr"
 DATA_FIELD_NGD = "ngd"
 DATA_FIELD_WHEEL = "wheel"
+DATA_FIELD_GIHWR_NORMALIZED = 'gihwr_normalized'
+DATA_FIELD_ALSA_NORMALIZED = 'alsa_normalized'
+DATA_FIELD_ALSA_NORMALIZED_SQUARED = 'alsa_normalized_squared'
 
 DATA_SECTION_IMAGES = "image"
 DATA_SECTION_RATINGS = "ratings"

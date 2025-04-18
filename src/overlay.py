@@ -625,7 +625,14 @@ class Overlay(ScaledWindow):
 
         self.passed_table_frame = tkinter.Frame(self.root, width=10)
 
-        self.passed_table = self._create_header("passed_table", self.passed_table_frame, 0, self.fonts_dict["All.TableRow"], headers,
+        passed_table_headers = {
+            'Color': {"width": .4, "anchor": tkinter.W},
+            "ALSA": {"width": .15, "anchor": tkinter.CENTER},
+            "GIHWR": {"width": .15, "anchor": tkinter.CENTER},
+            "# Cards": {"width": .15, "anchor": tkinter.CENTER},
+            "# Playable": {"width": .15, "anchor": tkinter.CENTER},
+        }
+        self.passed_table = self._create_header("passed_table", self.passed_table_frame, 0, self.fonts_dict["All.TableRow"], passed_table_headers,
                                                  self.table_width, True, True, constants.TABLE_STYLE, False)
 
         self.stat_frame = tkinter.Frame(self.root)
@@ -685,10 +692,10 @@ class Overlay(ScaledWindow):
         self.pack_table_frame.grid(row=10, column=0, columnspan=2)
         self.missing_frame.grid(row=11, column=0, columnspan=2, sticky='nsew')
         self.missing_table_frame.grid(row=12, column=0, columnspan=2)
-        self.stat_frame.grid(row=13, column=0, columnspan=2, sticky='nsew')
-        self.stat_table.grid(row=14, column=0, columnspan=2, sticky='nsew')
-        self.passed_frame.grid(row=15, column=0, columnspan=2, sticky='nsew')
-        self.passed_table_frame.grid(row=16, column=0, columnspan=2)
+        self.passed_frame.grid(row=13, column=0, columnspan=2, sticky='nsew')
+        self.passed_table_frame.grid(row=14, column=0, columnspan=2)
+        self.stat_frame.grid(row=15, column=0, columnspan=2, sticky='nsew')
+        self.stat_table.grid(row=16, column=0, columnspan=2, sticky='nsew')
         footnote_label.grid(row=17, column=0, columnspan=2)
 
         self.refresh_button.pack(expand=True, fill="both")
@@ -697,6 +704,8 @@ class Overlay(ScaledWindow):
         self.pack_table.pack(expand=True, fill='both')
         self.missing_cards_label.pack(expand=False, fill=None)
         self.missing_table.pack(expand=True, fill='both')
+        self.passed_cards_label.pack(expand=False, fill=None)
+        self.passed_table.pack(expand=True, fill='both')
         self.stat_label.pack(side=tkinter.LEFT, expand=True, fill=None)
         self.stat_options.pack(side=tkinter.RIGHT, expand=True, fill=None)
         self.current_draft_label.pack(expand=True, fill=None, anchor="e")
@@ -1009,7 +1018,7 @@ class Overlay(ScaledWindow):
             for color, symbol in constants.CARD_COLORS_DICT.items():
                 metrics = {}
                 tmp_metrics = []
-                for pack_card_list in card_list.values():
+                for pack_card_list in card_list:
                     if symbol:
                         card_colors_sorted = deck_card_search(
                             pack_card_list, symbol, card_types[0], card_types[1], card_types[2], card_types[3])
@@ -1031,7 +1040,7 @@ class Overlay(ScaledWindow):
 
             # Sort list by total
             result_list = dict(sorted(colors_filtered.items(
-            ), key=lambda item: item[1]["total"], reverse=True))
+            ), key=lambda item: item[1]['metrics'].get(constants.DATA_FIELD_ALSA_NORMALIZED_SQUARED, 0), reverse=True))
 
             # clear the previous rows
             for row in self.passed_table.get_children():
@@ -1053,7 +1062,7 @@ class Overlay(ScaledWindow):
                     iid=count,
                     values=(
                         color,
-                        *values['metrics'],
+                        *values['metrics'].values(),
                     ),
                     tag=(row_tag,),
                 )
@@ -1747,6 +1756,8 @@ class Overlay(ScaledWindow):
 
         self.__update_missing_table(
             [], {}, self.deck_filter_selection.get(), fields)
+        
+        self.__update_passed_table([])
 
         self.root.update()
 
@@ -1799,7 +1810,7 @@ class Overlay(ScaledWindow):
                                     filtered,
                                     fields)
         
-        self.__update_passed_table(passed_cards, filtered, fields)
+        self.__update_passed_table(passed_cards)
 
         self.__update_deck_stats_callback()
         self.__update_taken_table()

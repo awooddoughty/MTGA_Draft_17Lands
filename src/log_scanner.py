@@ -495,7 +495,8 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
-                            self.passed_cards.extend(pack_cards)
+                            if pick != 1:
+                                self.passed_cards.append(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -558,7 +559,8 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
-                            self.passed_cards.extend(pack_cards)
+                            if pick != 1:
+                                self.passed_cards.append(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -682,7 +684,8 @@ class ArenaScanner:
                                     self.initial_pack[pack_index] = pack_cards
 
                                 self.pack_cards[pack_index] = pack_cards
-                                self.passed_cards.extend(pack_cards)
+                                if pick != 1:
+                                    self.passed_cards.append(pack_cards)
 
                                 self.current_pack = pack
                                 self.current_pick = pick
@@ -921,7 +924,8 @@ class ArenaScanner:
                                 self.initial_pack[pack_index] = pack_cards
 
                             self.pack_cards[pack_index] = pack_cards
-                            self.passed_cards.extend(pack_cards)
+                            if pick != 1:
+                                self.passed_cards.append(pack_cards)
 
                             self.current_pack = pack
                             self.current_pick = pick
@@ -1145,7 +1149,10 @@ class ArenaScanner:
     
     def retrieve_passed_cards(self):
         '''Return the card data for all of the cards that were passed during the draft'''
-        passed_cards = self.set_data.get_data_by_id(self.passed_cards)
+        passed_cards = [
+            self.set_data.get_data_by_id(pack)
+            for pack in self.passed_cards
+        ]
         return passed_cards
 
     def retrieve_tier_data(self, files):

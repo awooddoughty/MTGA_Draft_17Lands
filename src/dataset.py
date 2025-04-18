@@ -1,3 +1,5 @@
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from src.utils import Result, check_file_integrity
 from src.file_extractor import initialize_card_data
 from typing import List, Dict, Tuple
@@ -10,7 +12,14 @@ from src.constants import (
     DATA_SECTION_IMAGES,
     COLOR_NAMES_DICT,
     WIN_RATE_OPTIONS,
-    WIN_RATE_FIELDS_DICT
+    WIN_RATE_FIELDS_DICT,
+    DATA_FIELD_GIHWR,
+    DATA_FIELD_ALSA,
+    DATA_FIELD_GIHWR_NORMALIZED,
+    DATA_FIELD_ALSA_NORMALIZED,
+    DATA_FIELD_ALSA_NORMALIZED_SQUARED,
+    FILTER_OPTION_ALL_DECKS,
+    DATA_FIELD_DECK_COLORS,
 )
 
 class Dataset:
@@ -37,10 +46,34 @@ class Dataset:
         
         if result != Result.VALID:
             return result
-            
-        self._dataset = json_data
+
+        self._dataset = self.construct_normalized_values(json_data)
         
         return result
+    
+    def construct_normalized_values(self, json_data):
+        new_fields = [
+            DATA_FIELD_ALSA_NORMALIZED,
+            DATA_FIELD_ALSA_NORMALIZED_SQUARED,
+            DATA_FIELD_GIHWR_NORMALIZED,
+        ]
+        card_values = pd.DataFrame(
+            [
+                {
+                    'card_id': card_id,
+                    DATA_FIELD_GIHWR: values[DATA_FIELD_DECK_COLORS][FILTER_OPTION_ALL_DECKS][DATA_FIELD_GIHWR],
+                    DATA_FIELD_ALSA: values[DATA_FIELD_DECK_COLORS][FILTER_OPTION_ALL_DECKS][DATA_FIELD_ALSA],
+                }
+                for card_id, values in json_data["card_ratings"].items()
+            ],
+        ).set_index('card_id')
+        card_values[DATA_FIELD_ALSA_NORMALIZED] = 1 - MinMaxScaler().fit_transform(card_values[DATA_FIELD_ALSA].values.reshape(-1, 1)).squeeze()
+        card_values[DATA_FIELD_ALSA_NORMALIZED_SQUARED] = card_values[DATA_FIELD_ALSA_NORMALIZED]**2
+        card_values[DATA_FIELD_GIHWR_NORMALIZED] = MinMaxScaler().fit_transform(card_values[DATA_FIELD_GIHWR].values.reshape(-1, 1)).squeeze()
+        for card_id, values in json_data["card_ratings"].items():
+            for new_field in new_fields:
+                values['deck_colors']['All Decks'][new_field] = float(card_values.loc[card_id][new_field])
+        return json_data
 
     def get_data_by_id(self, id_list: List[str]) -> List[Dict]:
         """

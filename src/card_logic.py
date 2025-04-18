@@ -267,17 +267,26 @@ def format_tier_results(value, old_format, new_format):
 def get_passed_metrics(cards):
     # TODO how should this be set? by the set averages?
     playable_threshold = 55
+    metrics = {}
     try:
         # TODO figure out the right way to get normalized data
         # Either compute set stats and then use normalizer here
         # Or precompute the values and set them on all the cards
         metrics = {
-            constants.DATA_FIELD_ALSA: max([card.constants.DATA_FIELD_ALSA for card in cards]),
-            constants.DATA_FIELD_GIHWR: max([card.constants.DATA_FIELD_GIHWR for card in cards]),
+            constants.DATA_FIELD_ALSA_NORMALIZED_SQUARED: max([
+                card[constants.DATA_FIELD_DECK_COLORS][constants.FILTER_OPTION_ALL_DECKS][constants.DATA_FIELD_ALSA_NORMALIZED_SQUARED]
+                for card in cards
+            ] + [0]),
+            constants.DATA_FIELD_GIHWR_NORMALIZED: max([
+                card[constants.DATA_FIELD_DECK_COLORS][constants.FILTER_OPTION_ALL_DECKS][constants.DATA_FIELD_GIHWR_NORMALIZED]
+                for card in cards
+            ] + [0]),
             'num_cards': len(cards),
             'num_playables': sum(
                 [
-                    card.constants.DATA_FIELD_GIHWR >= playable_threshold
+                    card[
+                        constants.DATA_FIELD_DECK_COLORS
+                    ][constants.FILTER_OPTION_ALL_DECKS][constants.DATA_FIELD_GIHWR] >= playable_threshold
                     for card in cards
                 ]
             )
