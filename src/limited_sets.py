@@ -12,7 +12,7 @@ from src.logger import create_logger
 
 logger = create_logger()
 
-LIMITED_SETS_VERSION = 5
+LIMITED_SETS_VERSION = 7
 TOTAL_SCRYFALL_SETS = 50
 DATE_SHIFT_OFFSET_DAYS = -30
 TEMP_LIMITED_SETS = os.path.join("Temp", "temp_set_list.json")
@@ -24,6 +24,8 @@ class SetInfo(BaseModel):
     arena: List[str] = Field(default_factory=list)
     scryfall: List[str] = Field(default_factory=list)
     seventeenlands: List[str] = Field(default_factory=list)
+    formats: List[str] = Field(default_factory=list)
+    set_code: str = ""
     start_date: str = START_DATE_DEFAULT
 
 class SpecialEvent(BaseModel):
@@ -31,6 +33,7 @@ class SpecialEvent(BaseModel):
     type: str = ""
     set_code: str = ""
     keywords: List[str] = Field(default_factory=list)
+    number_of_players: int = 8
 
 class SetDictionary(BaseModel):
     version: int = 0
@@ -76,7 +79,6 @@ def shift_date(start_date, shifted_days, string_format, next_dow=None):
         logger.error(error)
 
     return shifted_date, shifted_date_string
-
 
 class LimitedSets:
     def __init__(self, sets_file_location: str = TEMP_LIMITED_SETS):
@@ -248,22 +250,27 @@ class LimitedSets:
         temp_dict = SetDictionary(version=LIMITED_SETS_VERSION)
         if self.sets_scryfall.data and self.sets_17lands.data:
             set_codes_to_remove = []
-            # If the application is able to collect the set list from Scryfall and 17Lands, then it will use the 17Lands list to filter the Scryfall list
-            for code in self.sets_17lands.data:
-                for set_name, set_fields in self.sets_scryfall.data.items():
-                    set_code = set_fields.seventeenlands[0]
-                    if set_code == code:
-                        temp_dict.data[set_name] = set_fields
-                        set_codes_to_remove.append(code)
-                        break
-
-            # Remove the set codes from self.sets_17lands
-            for code in set_codes_to_remove:
-                del self.sets_17lands.data[code]
-
-        # Insert any 17Lands sets that were not collected from Scryfall
-        temp_dict.data.update(self.sets_17lands.data)
+            alchemy_sets = {}
+            # Adding the sets that have Scryfall labels
+            for set_name, set_fields in self.sets_scryfall.data.items():
+                set_code = set_fields.seventeenlands[0]
+                if set_code in self.sets_17lands.data:
+                    if re.match(r"^Y\d{2}[A-Za-z]{3}$", set_code):
+                        alchemy_sets[set_name] = self.sets_17lands.data[set_code]
+                    else:
+                        temp_dict.data[set_name] = self.sets_17lands.data[set_code]
+                    set_codes_to_remove.append(set_code)
+            
+            # Adding the unknown 17Lands sets to the list
+            for set_code, set_fields in self.sets_17lands.data.items():
+                if set_code not in set_codes_to_remove:
+                    if re.match(r"^Y\d{2}[A-Za-z]{3}$", set_code):
+                        alchemy_sets[set_code] = set_fields
+                    else:
+                        temp_dict.data[set_code] = set_fields
+                    
         temp_dict.data.update(read_sets.data)
+        temp_dict.data.update(alchemy_sets)
         temp_dict.latest_set = read_sets.latest_set
 
         return temp_dict
@@ -272,15 +279,22 @@ class LimitedSets:
         '''Parse json data from the 17lands filters page'''
         try:
             for card_set in data["expansions"]:
-                self.sets_17lands.data[card_set.upper()] = SetInfo(arena=[constants.SET_SELECTION_ALL],
+                self.sets_17lands.data[card_set] = SetInfo(arena=[constants.SET_SELECTION_ALL],
                                                                    scryfall=[],
-                                                                   seventeenlands=[card_set.upper()])
+                                                                   seventeenlands=[card_set],
+                                                                   set_code=card_set.split(" ")[0].upper())
             for card_set, date_string in data["start_dates"].items():
-                if card_set.upper() in self.sets_17lands.data:
-                    self.sets_17lands.data[card_set.upper()].start_date = date_string.split('T')[0]
+                if card_set in self.sets_17lands.data:
+                    self.sets_17lands.data[card_set].start_date = REPLACE_PHRASE_DATE_SHIFT if "Cube" in card_set else date_string.split('T')[0]
+
+            # Identify formats for each card set
+            for card_set, formats in data["formats_by_expansion"].items():
+                if card_set in self.sets_17lands.data:
+                    self.sets_17lands.data[card_set].formats = [x for x in formats if x in constants.LIMITED_TYPE_LIST] + [x for x in constants.LIMITED_TYPE_LIST if x not in formats]
             
             # Retrieve the latest set code from the 17Lands expansions list
-            self.latest_set = next(iter(self.sets_17lands.data))
+            if self.sets_17lands.data:
+                self.latest_set = self.sets_17lands.data[next(iter(self.sets_17lands.data))].set_code
         except Exception as error:
             logger.error(error)
 
@@ -331,14 +345,6 @@ class LimitedSets:
 
             except Exception as error:
                 logger.error(error)
-
-        # Insert the cube set
-        self.sets_scryfall.data["Arena Cube"] = SetInfo(
-            arena=[constants.SET_SELECTION_ALL],
-            scryfall=[],
-            seventeenlands=["CUBE"],
-            start_date=REPLACE_PHRASE_DATE_SHIFT
-        )
 
         return
 

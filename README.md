@@ -19,12 +19,29 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
   - [Menu Features](#menu-features)
   - [Additional Features](#additional-features)
   - [Settings](#settings)
+  - [File Locations](#file-locations)
+    - [Configuration (`config.json`)](#configuration-configjson)
+    - [Datasets](#datasets)
+    - [Logs](#logs)
   - [Card Logic](#card-logic)
   - [The P1P1 Solution](#the-p1p1-solution)
     - [The Problem](#the-problem)
     - [The Solution](#the-solution)
     - [Future Considerations](#future-considerations)
+  - [Tier List (API-Based)](#tier-list-api-based)
+    - [How It Works](#how-it-works)
+    - [How to Use](#how-to-use)
+  - [Signal Detection (Beta)](#signal-detection-beta)
+  - [Dataset Notifications](#dataset-notifications)
+    - [No Datasets Found](#no-datasets-found)
+    - [Missing Dataset](#missing-dataset)
+    - [Dataset Update Available](#dataset-update-available)
   - [Troubleshooting](#troubleshooting)
+    - [Known Issues](#known-issues)
+    - [Arena Log Issues](#arena-log-issues)
+      - [Premier and Traditional Drafts](#premier-and-traditional-drafts)
+      - [Quick Drafts](#quick-drafts)
+      - [Sealed and Traditional Sealed](#sealed-and-traditional-sealed)
 
 ## Run Steps: Windows Executable (Windows Only)
 
@@ -63,7 +80,7 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
   - (Linux only) [Install Tk](https://tkdocs.com/tutorial/install.html#installlinux)
 - **Step 7:** In Arena, go to Adjust Options, Account, and then check the Detailed Logs (Plugin Support) check box.
 - **Step 8:** Start the application by opening the terminal and entering ```python main.py```.
-- **Step 9:** If the application asks you for the location of the Arena player log, then click `File->Open` and select the log file from one of the following locations:
+- **Step 9:** If the application asks you for the location of the Arena player log, then click `File->Read Player.log` and select the log file from one of the following locations:
   - **Windows:** {drive}/Users/{username}/AppData/LocalLow/Wizards Of The Coast/MTGA/Player.log
   - **Mac:** {username}/Library/Logs/Wizards Of The Coast/MTGA/Player.log
   - **Bottles (Linux):** /home/{username}/.var/app/com.usebottles.bottles/data/bottles/bottles/MTG-Arena/drive_c/users/{username}/AppData/LocalLow/Wizards Of The Coast/MTGA/Player.log
@@ -83,6 +100,7 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
   - The sealed card pool can be found in the [Taken Cards window](#menu-features).
 
 ## Steps to Build the Windows Executable
+
 **Note:** This project uses a [GitHub Action](https://github.com/unrealities/MTGA_Draft_17Lands/actions/workflows/build-windows-exe.yml) to perform the following steps.
 
 - **Step 1:** Download and install Python 3.12.
@@ -124,16 +142,22 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
 - **Draft Stats Table:** This table lists the card distribution and total for creatures, non-creatures, and all cards taken during the draft.
   - The numbered columns represent the cost of the card (CMC).
   - You can hide this feature by deselecting `Enable Draft Stats` in the [Settings window](#settings)
+- **Signals Table:** This table displays calculated "Signal Scores" for each of the 5 colors. See [Signal Detection](#signal-detection-beta) for details.
+  - You can hide this feature by deselecting `Enable Signals` in the [Settings window](#settings)
 
 ## Menu Features
 
 ![Settings_Dark](https://github.com/unrealities/MTGA_Draft_17Lands/blob/main/assets/96687942/642a0795-e407-410e-b8d6-6332f3083ac7.png)
 ![Settings_Colors](https://github.com/unrealities/MTGA_Draft_17Lands/blob/main/assets/96687942/90c6b3df-0ade-4f32-a1be-b2ef40cedc32.png)
 
-- **Read Draft Logs:** Read the log file from a draft by selecting `File->Open`. Select a file that has the following naming scheme `DraftLog_<Set>_<Draft Type>_<Draft_ID>.log` file to read the file.
+- **Read Draft Logs:** Read the log file from a draft by selecting `File->Read Draft Log`. Select a file that has the following naming scheme `DraftLog_<Set>_<Draft Type>_<Draft_ID>.log` file to read the file.
+- **Export Draft Data:** Export the full history of the current draft (every pack seen and pick made) to a CSV or JSON file by selecting `File->Export Draft Data`.
+  - This is useful for analyzing your draft path, signals, and wheel percentages in external tools (Excel, Python, etc.).
+  - The export includes card identity, 17Lands statistics, and a "Picked" flag.
 - **Download Set Data:** Open the Download Dataset window by selecting `Data->Download Dataset`. Enter the set information and click the ADD SET button to begin downloading the set data.
   - The download can take several minutes.
   - 17Lands will timeout the request if too many requests are made within a short period.
+  - **Min Games:** You can adjust the minimum number of games required for color ratings (default: 5000). Lowering this is useful for low-population formats like Cube or Flashback drafts where data is scarce.
 - **List Taken Cards:** Get to the Taken Cards window by selecting `Cards->Taken Cards`.
   - This table lists the cards that were taken by the user throughout the draft.
 - **List Suggested Decks:** Get to the Suggested Decks window by selecting `Cards->Suggest Decksa`.
@@ -148,8 +172,7 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
 - **Hotkey:** The user can use the hotkey `CTRL+G` to toggle between minimizing and maximizing the main application window.
   - This feature doesn't work on Mac.
   - You need to run the executable as an administrator for this feature to work in Arena.
-- **Top-Level Window:** The main application window and subsequent windows will act as an overlay and remain above all other windows, including the Arena screen.
-- **Tier List:** A tier list can be added to the drop-downs by following the instructions in [tier list README](https://github.com/unrealities/MTGA_Draft_17Lands/tree/main/Tools/TierScraper17Lands#tier-list-download-extension).
+- **Tier List:** You can now add a tier list directly from the 17Lands API. Use the application's `Data > Download Tier List` menu to enter a 17Lands tier list URL and label. Once downloaded, the tier list will appear in the drop-down options during drafts. See the [Tier List (API-Based)](#tier-list-api-based) section for details.
 - **Card Tooltips:** Clicking on any card row will display a tooltip that contains the card images (back and front) and the 17Lands data.
 
 ## Settings
@@ -164,6 +187,7 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
 - **Enable Row Colors:** Sets the row color to the card color.
 - **Enable Color Identity:** Once activated, the Colors field will showcase the mana symbols representing both the mana cost and abilities of a card, such as kicker, activated abilities, and more.
 - **Enable Draft Stats:** Displays the draft stats table and drop-down in the main window.
+- **Enable Signals:** Displays the signal detection table (Beta feature).
 - **Enable Missing Cards:** Displays the missing cards table in the main window.
 - **Enable Highest Rated:** Enables the highest-rated card logic for the `Auto` filter. See the auto-highest rating note in the [Card Logic](#card-logic) section.
 - **Enable Bayesian Average:** Enables the Bayesian average logic for all win rate fields. See the Bayesian average note in the [Card Logic](#card-logic) section.
@@ -172,6 +196,28 @@ Magic: The Gathering Arena draft tool that utilizes 17Lands data.
 - **UI Size:** Increase or decrease the application text and image size.
 - **Enable P1P1 OCR:** Enables [The P1P1 Solution](#the-p1p1-solution).
 - **Save P1P1 Screenshots:** When using [The P1P1 Solution](#the-p1p1-solution) screenshots will be saved to the `./Screenshots` folder.
+
+## File Locations
+
+The application stores your settings and data in specific locations to ensure they persist across updates.
+
+### Configuration (`config.json`)
+
+The application looks for the configuration file in the following order:
+
+1. **Local Folder:** If `config.json` exists in the same folder as the application, it is used. This allows for "Portable Mode" (e.g., running from a USB drive).
+2. **System User Folder:** If no local file is found, the application uses the standard user data directory:
+    - **Windows:** `%APPDATA%\MTGA_Draft_Tool\config.json`
+    - **Mac:** `~/Library/Application Support/MTGA_Draft_Tool/config.json`
+    - **Linux:** `~/.config/MTGA_Draft_Tool/config.json`
+
+### Datasets
+
+Downloaded card data is stored in the `Sets` folder located in the same directory as the application executable.
+
+### Logs
+
+Application debug logs are stored in the `Debug` folder, and draft logs are stored in the `Logs` folder, both located in the same directory as the application executable.
 
 ## Card Logic
 
@@ -257,13 +303,124 @@ The following solution is for P1P1. After you have selected a card, only Arena l
 
 - For 30 days in June/July 2024, there were 913 requests, less than 1000 free requests each month for Google Cloud Functions. I will monitor Bloomburrow's release, but the feature is currently in no jeopardy of being removed.
 
+## Tier List (API-Based)
+
+MTGA_Draft_17Lands now features integrated support for downloading and using 17Lands tier lists directly within the application. Previously, this functionality required a separate Chrome extension, but it is now built in—no browser extension needed.
+
+### How It Works
+
+- The tool connects to the 17Lands API to download a tier list from a provided URL.
+- You can select a tier list during a draft to display card grades as you draft.
+
+### How to Use
+
+1. **Download a Tier List**
+
+- In the application menu, go to `Data > Download Tier List`.
+- Enter the 17Lands tier list URL and a label for the tier list.
+- The tier list will be saved to the `Tier` folder.
+
+1. **Use Tier Lists in Drafts**
+
+- Make sure you have downloaded the dataset for the event from `Data > Download Dataset`. The dataset is required to identify cards in the Arena log, even if it doesn't contain card data.
+- When an event is detected, available tier lists for that set will appear in the column options in the [Settings window](#settings).
+- Card ratings from the selected tier list will be shown in the pack table for your current pack.
+
+## Signal Detection (Beta)
+
+This feature attempts to identify "Open Lanes" by analyzing the cards passed to you during the draft.
+
+- **How it works:** The tool scans every pack you see in **Pack 1** and **Pack 3** (when cards are passed from the left). It calculates a "Signal Score" for every card based on its quality (GIHWR) and how late you are seeing it compared to its Average Taken At (ATA).
+- **The Logic:** Seeing a high-win-rate card later than it is usually taken generates a positive signal score for that card's color(s).
+- **The Table:** The "Signals" table sums up these scores for each of the 5 colors.
+  - **High Score:** Indicates the color is flowing freely. A score of **20+** typically suggests a very open lane.
+  - **Low Score (or 0):** Indicates the color is being cut by your neighbors.
+- **Note:** This feature ignores Pack 2 (passed from the right) to focus on the signals that determine your rewards in Pack 3.
+- **Configuration:** You can enable/disable this feature in the Settings menu (`Enable Signals`).
+
+## Dataset Notifications
+
+The application includes notifications to ensure datasets are always up-to-date. These features alert users about missing datasets, prompt downloads for required data, and notify about updates. Notifications can be disabled in the Settings menu.
+
+### No Datasets Found
+
+If no local datasets are detected, a notification will appear prompting the user to download the required datasets. This ensures that the tool has the necessary data to function properly.
+
+<img width="408" height="197" alt="No_datasets" src="https://github.com/user-attachments/assets/2eaee3d7-ce9f-48ae-82c9-01037a76782e" />
+
+**Behavior:**
+
+- A dialog box will appear with the message: "No datasets detected. Would you like to download a dataset now?"
+- If the user clicks `Yes`, the **Download Dataset** window will open, allowing the user to download a dataset.
+
+**Tip:** To stop seeing this notification, open the `Settings` menu and uncheck the `Enable Missing Dataset Notifications` option.
+
+---
+
+### Missing Dataset
+
+If a dataset for a detected event is missing, the application will notify the user and provide an option to download the dataset automatically.
+
+<img width="407" height="207" alt="Missing_datasets" src="https://github.com/user-attachments/assets/90466ecf-9e26-41e3-a90e-8eba7a52cfb2" />
+
+**Behavior:**
+
+- A dialog box will appear with the message: "No dataset found for expansion [Set Name]. Would you like to download the dataset now?"
+- If the user clicks `Yes`, the application will automatically download the dataset for the missing event.
+- This feature is currently limited to Quick Drafts to avoid interfering with timed events such as Premier or Traditional Drafts.
+
+**Tip:** To stop seeing this notification, open the `Settings` menu and uncheck the `Enable Missing Dataset Notifications` option.
+
+---
+
+### Dataset Update Available
+
+Upon startup, the application checks for updates to the most recently used dataset. If an updated version is available, the user will receive a notification and be prompted to download the update.
+
+<img width="400" height="194" alt="image" src="https://github.com/user-attachments/assets/ed5162f5-7779-49d8-9a8e-48dab464def9" />
+
+**Behavior:**
+
+- A dialog box will appear with the message: "New data available for [Set Name]. Would you like to update your dataset?"
+- If the user clicks `Yes`, the application will download the updated dataset.
+- This feature is rate-limited to once every 24 hours.
+
+**Tip:** To disable update notifications, open the `Settings` menu and uncheck the `Enable Dataset Update Notifications` option.
+
+---
+
 ## Troubleshooting
+
+### Known Issues
 
 - **Some cards are missing from the Taken Cards window:** Due to Arena creating a new player log after every restart, the application cannot track cards that were picked and seen prior to a restart. However, players in drafting sessions spanning multiple days or sessions can still use this tool to access the current pack data. It should be noted that this application may not have access to information regarding previous packs and picks, resulting in some missing data.
 - **The application can't generate set or debug files:** Windows users might need to run the application as an administrator if the application is installed in a directory with restricted write access.
-- **My sealed card pool is missing after restarting Arena:** Arena creates a new player log after every restart, so you will need to open up your sealed event session log by clicking `File->Open` and selecting the `DraftLog_<Set>_Sealed` file if you want to see your sealed card pool. Remember that opening a log file will prevent the application from reading the Arena player log. Therefore, you must restart the application if you wish to initiate a new Arena event.
-- **The tables are displaying a win rate of 0% or NA:** The application will display a card win rate value of 0% or NA if that win rate field has fewer than 500 samples (e.g., GIHWR will be 0% or NA if the number of games in hand is less than 500). Users should consider using the premier draft dataset or downloading a [tier list](https://github.com/unrealities/MTGA_Draft_17Lands/tree/main/Tools/TierScraper17Lands#tier-list-download-extension) for events that have a low player count.
+- **My sealed card pool is missing after restarting Arena:** Arena creates a new player log after every restart, so you will need to open up your sealed event session log by clicking `File->Read Draft Log` and selecting the `DraftLog_<Set>_Sealed` file if you want to see your sealed card pool. Remember that opening a log file will prevent the application from reading the Arena player log. Therefore, you must restart the application if you wish to initiate a new Arena event.
+- **The tables are displaying a win rate of 0% or NA:** The application will display a card win rate value of 0% or NA if that win rate field has fewer than 500 samples (e.g., GIHWR will be 0% or NA if the number of games in hand is less than 500). Users should consider using the premier draft dataset or downloading a [tier list using the API-based method](#tier-list-api-based) for events that have a low player count.
   - ***As of September 2023, the 17Lands endpoint no longer provides win rate data for cards with fewer than 500 samples.**
 - **CTRL+G doesn't do anything:** If you're a Mac user, this shortcut isn't available. You must run the application as an administrator if you're a Windows user.
 - **The set download process takes 5+ minutes, and I'm seeing _Collecting 17Lands Data - Request Failed_ multiple times:** If you attempt to download too many sets within a short period, 17Lands will impose rate-limiting on your connection. Therefore, when downloading multiple sets, waiting at least 10 minutes between them is advisable.
 - **SSL errors in log on MacOS: `ERROR - limited_sets.retrieve_scryfall_sets - <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)`** Install SSL certificates via /Applications/Python 3.12/Install Certificates.command
+- **The application displays the wrong set when joining an Arena Open or qualifier event:** The log entries for these events do not specify the set, so the application defaults to the latest released set. If the event is not for the latest set, you can open the `Temp/temp_set_list.json` file and replace `"{LATEST}"` with the correct set code, such as `"TDM"` for Tarkir: Dragonstorm
+
+### Arena Log Issues
+
+Arena updates may occasionally modify the log entries that this application reads. If the application cannot detect an active event, or if pack data is missing, please click `File > Open Player.log` and search for the following strings in the log file. If you find entries that contain similar strings, please create a bug report and include the log entry.
+
+#### Premier and Traditional Drafts
+
+- **Event Detection:** `[UnityCrossThreadLogger]==> EventJoin` or `[UnityCrossThreadLogger]==> Event_Join`, `id`, and `EventName`
+- **Pack 1, Pick 1:** `CardsInPack`, `id`, `PackNumber`, and `PickNumber`
+- **Packs:** `[UnityCrossThreadLogger]Draft.Notify`, `draftId`, `PackCards`, `SelfPack`, and `SelfPick`
+- **Picks:** `[UnityCrossThreadLogger]==> EventPlayerDraftMakePick` or `[UnityCrossThreadLogger]==> Event_PlayerDraftMakePick`, `id`, `Pack`, `Pick`, and `GrpIds` or `GrpId`
+
+#### Quick Drafts
+
+- **Event Detection:** `[UnityCrossThreadLogger]==> BotDraftDraftStatus` or `[UnityCrossThreadLogger]==> BotDraft_DraftStatus`, `id`, and `EventName`
+- **Packs:** `DraftPack`, `CurrentModule`, `DraftStatus`, `PickNext`, `PackNumber`, `PickNumber`, and `PickedCards`
+- **Picks:** `[UnityCrossThreadLogger]==> BotDraftDraftPick` or `[UnityCrossThreadLogger]==> BotDraft_DraftPick`, `PackNumber`, `PickNumber`, and `CardIds` or `CardId`
+
+#### Sealed and Traditional Sealed
+
+- **Event Detection:** `[UnityCrossThreadLogger]==> EventJoin` or `[UnityCrossThreadLogger]==> Event_Join`, `id`, and `EventName`
+- **Cardpool:** `InternalEventName`, `CardPool`, and `Courses` or `Course`
