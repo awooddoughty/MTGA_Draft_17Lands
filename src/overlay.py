@@ -1199,7 +1199,7 @@ class Overlay(ScaledWindow):
                 self.passed_table.config(height=0)
 
             for count, (color, values) in enumerate(result_list.items()):
-                row_tag = identify_table_row_tag(
+                row_tag = self._identify_table_row_tag(
                     self.configuration.settings.card_colors_enabled, values["symbol"], count)
                 self.passed_table.insert(
                     "",
