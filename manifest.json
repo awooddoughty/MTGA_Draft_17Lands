@@ -1,0 +1,55 @@
+{
+  "datasets": {
+    "TMT_PickTwoDraft_All": {
+      "filename": "TMT_PickTwoDraft_All_Data.json.gz",
+      "hash": "e6610a0f9c8e43c5585ebd581410ba82676edb9d238319958e9e00a32f0608de",
+      "size_kb": 91
+    },
+    "TMT_PickTwoDraft_Top": {
+      "filename": "TMT_PickTwoDraft_Top_Data.json.gz",
+      "hash": "bbe809d279ba8e8647f4311d1901416875d18c24be21f81814e56b936e82a4d3",
+      "size_kb": 23
+    },
+    "TMT_TradDraft_All": {
+      "filename": "TMT_TradDraft_All_Data.json.gz",
+      "hash": "996ec44d888ae7deaf9c5c712c56ced4e8625fe7eb50d9642fe5b1fa122fb36f",
+      "size_kb": 63
+    },
+    "TMT_TradDraft_Top": {
+      "filename": "TMT_TradDraft_Top_Data.json.gz",
+      "hash": "2166f1021a9b4c5d02ccd274ad455e996aef082a3d796b71f537522b1c23dd91",
+      "size_kb": 35
+    },
+    "TMT_PremierDraft_All": {
+      "filename": "TMT_PremierDraft_All_Data.json.gz",
+      "hash": "63c07150f672d4703820964bb7ae0164dfb6d547af073ce8f8a9e0fbdc57e528",
+      "size_kb": 102
+    },
+    "TMT_PremierDraft_Top": {
+      "filename": "TMT_PremierDraft_Top_Data.json.gz",
+      "hash": "fdbb4e08c8218210f2c3ef0986f937fe887599d6928b016c011ef34ff3622e37",
+      "size_kb": 61
+    },
+    "BLB_PremierDraft_All": {
+      "filename": "BLB_PremierDraft_All_Data.json.gz",
+      "hash": "edf035c64a035373689c047d0bcd4932c125819ab3ce6c803ad0e4ba2273b7bc",
+      "size_kb": 166
+    },
+    "BLB_PremierDraft_Top": {
+      "filename": "BLB_PremierDraft_Top_Data.json.gz",
+      "hash": "170ca2e248a79a1991562d08a248ce9f47f3b57a004be014b0fbf6efbb5467e5",
+      "size_kb": 112
+    },
+    "FDN_QuickDraft_All": {
+      "filename": "FDN_QuickDraft_All_Data.json.gz",
+      "hash": "4fab7257dab15117ef75a6ab940b527a97f330ef72cbf1065b43bc28d34cbc12",
+      "size_kb": 166
+    },
+    "FDN_QuickDraft_Top": {
+      "filename": "FDN_QuickDraft_Top_Data.json.gz",
+      "hash": "69c56ed2ce3456eba4e71971700bd584311ca1783eee4c2f2db62cf20a3e963a",
+      "size_kb": 52
+    }
+  },
+  "updated_at": "2026-04-01T10:59:02.023476+00:00"
+}
