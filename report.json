@@ -1,22 +1,22 @@
 {
   "pipeline_run": {
-    "started_at": "2026-04-12T10:40:02.991448+00:00",
-    "completed_at": "2026-04-12T10:55:06.346331+00:00",
+    "started_at": "2026-04-13T11:18:28.979624+00:00",
+    "completed_at": "2026-04-13T11:33:32.365376+00:00",
     "duration_sec": 903.4,
     "status": "PARTIAL_SUCCESS"
   },
   "api_stats": {
-    "total_requests": 147,
+    "total_requests": 148,
     "failed_requests": 0,
     "cached_requests": 0
   },
   "intent": {
     "scheduled_events": {
       "TMT": [
-        "PickTwoDraft",
-        "TradDraft",
+        "PremierDraft",
         "QuickDraft",
-        "PremierDraft"
+        "TradDraft",
+        "PickTwoDraft"
       ],
       "FDN": [
         "PremierDraft"
@@ -66,7 +66,7 @@
   "execution_summary": {
     "formats_updated": 10,
     "formats_skipped": 2,
-    "total_output_kb": 827,
+    "total_output_kb": 828,
     "total_cards_rated": 2594,
     "total_errors": 0,
     "total_warnings": 1
@@ -93,64 +93,10 @@
   "datasets_updated": [
     {
       "set": "TMT",
-      "format": "PickTwoDraft",
-      "filename": "TMT_PickTwoDraft_All_Data.json.gz",
-      "size_kb": 95,
-      "hash": "3f02472be474065128d5cc75a72eb0275979888faabf2f83aba46ccbe04dcef8",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PickTwoDraft",
-      "filename": "TMT_PickTwoDraft_Top_Data.json.gz",
-      "size_kb": 23,
-      "hash": "7b7161893700919cb07ce97b23efc63b46de83bbf745ee732e0eec3f0d3a3a37",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_All_Data.json.gz",
-      "size_kb": 65,
-      "hash": "df88cbc51b9f005de30240fcbe15d8842cddf05e84ca999d5edc1f04b8ad94cb",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_Top_Data.json.gz",
-      "size_kb": 37,
-      "hash": "52559e108ecd77f53c8180a0d2bd5159238f80949d5c6bf44cab94e3d32bb073",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "QuickDraft",
-      "filename": "TMT_QuickDraft_All_Data.json.gz",
-      "size_kb": 79,
-      "hash": "491729fe641146b59e2ef6225f85b4631ee1575792895a65ad2ae5284d2dd3ed",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "QuickDraft",
-      "filename": "TMT_QuickDraft_Top_Data.json.gz",
-      "size_kb": 23,
-      "hash": "49c766cf9adbd93bac59b08e1f50101f2c6e1f664438780746776bb3de07abc3",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
       "format": "PremierDraft",
       "filename": "TMT_PremierDraft_All_Data.json.gz",
-      "size_kb": 106,
-      "hash": "fd17f19bb28e402d5bf7abfc7d25d71c609144e0fbd2aaadd8b43048392012b9",
+      "size_kb": 107,
+      "hash": "12e386443f72410cd6ab6ad83731043cf71a1a7eeb332e8349d884f034476ae6",
       "card_count": 195,
       "status": "success"
     },
@@ -159,7 +105,61 @@
       "format": "PremierDraft",
       "filename": "TMT_PremierDraft_Top_Data.json.gz",
       "size_kb": 64,
-      "hash": "e9ac542077dd0c2c2c8e940602acb20edeb55f90439c391aa4a2eecf8c7fdbd5",
+      "hash": "03248667af40f7fd89feea0420adfcfc8611cb291a42ad13294b3f533eb2d7db",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "QuickDraft",
+      "filename": "TMT_QuickDraft_All_Data.json.gz",
+      "size_kb": 79,
+      "hash": "930309171bc4743de939c223e13ace5a09bbe263218e867ea6cbd73759d43311",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "QuickDraft",
+      "filename": "TMT_QuickDraft_Top_Data.json.gz",
+      "size_kb": 23,
+      "hash": "61bfe0f6c9d04a1b64959717edbe11cc02cc636ea528697457d95252fe023907",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "TradDraft",
+      "filename": "TMT_TradDraft_All_Data.json.gz",
+      "size_kb": 65,
+      "hash": "86247304d2d8facc245590d1cf0a9d25e8eb05522ea6f9df9006f9e4336b9681",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "TradDraft",
+      "filename": "TMT_TradDraft_Top_Data.json.gz",
+      "size_kb": 37,
+      "hash": "38018b0f68cbd497815830c7007ccf1bbeb1d4ee775dc115ae49f1944d034a56",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "PickTwoDraft",
+      "filename": "TMT_PickTwoDraft_All_Data.json.gz",
+      "size_kb": 95,
+      "hash": "d905088b3fb985d1aa0edfb533b63fa5421a445b46683ec1869e7f3bf265da47",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "PickTwoDraft",
+      "filename": "TMT_PickTwoDraft_Top_Data.json.gz",
+      "size_kb": 23,
+      "hash": "ddf8be6e546807cbc85952c8d76647a5f8e2bb285f9c27ea50d01cd29e1d28a5",
       "card_count": 195,
       "status": "success"
     },
@@ -168,7 +168,7 @@
       "format": "PremierDraft",
       "filename": "FDN_PremierDraft_All_Data.json.gz",
       "size_kb": 197,
-      "hash": "b3122ca5defac2035b7a9cc0100ba6268bc9dddf499e817a025e936c7cf2cb7d",
+      "hash": "751971edf56a79062a5feff9ce9eda1bbf94861de5f33f89fa88bb7209bdef9e",
       "card_count": 517,
       "status": "success"
     },
@@ -177,7 +177,7 @@
       "format": "PremierDraft",
       "filename": "FDN_PremierDraft_Top_Data.json.gz",
       "size_kb": 138,
-      "hash": "478d26e9f2cad367c45c1e5306d0c8d4e5fef0725d59bcd95971fe3b1e2af17c",
+      "hash": "ee3d5093c4b1ca29322550537a5ba8aa669373c2a057b42743de7b4c420fbf65",
       "card_count": 517,
       "status": "success"
     }
@@ -197,7 +197,7 @@
   "errors": [],
   "warnings": [
     {
-      "time": "2026-04-12T10:49:11.357561+00:00",
+      "time": "2026-04-13T11:27:13.975662+00:00",
       "level": "WARNING",
       "logger": "server.utils",
       "message": "HTTP 403 on www.17lands.com. Backing off 180.0s to cool down IP..."
