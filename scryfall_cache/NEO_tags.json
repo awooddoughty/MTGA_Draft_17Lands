@@ -1,0 +1,681 @@
+{
+  "A-Dokuchi Silencer": [
+    "removal"
+  ],
+  "Assassin's Ink": [
+    "removal"
+  ],
+  "Bamboo Grove Archer": [
+    "removal"
+  ],
+  "Banishing Slash": [
+    "removal"
+  ],
+  "Boseiju, Who Endures": [
+    "removal"
+  ],
+  "Clawing Torment": [
+    "removal"
+  ],
+  "Colossal Skyturtle": [
+    "removal",
+    "card_advantage",
+    "evasion"
+  ],
+  "Debt to the Kami": [
+    "removal"
+  ],
+  "Disruption Protocol": [
+    "removal"
+  ],
+  "Dokuchi Silencer": [
+    "removal"
+  ],
+  "Dragonspark Reactor": [
+    "removal"
+  ],
+  "Eiganjo, Seat of the Empire": [
+    "removal"
+  ],
+  "Essence Capture": [
+    "removal"
+  ],
+  "Explosive Entry": [
+    "removal"
+  ],
+  "Explosive Singularity": [
+    "removal"
+  ],
+  "Fade into Antiquity": [
+    "removal"
+  ],
+  "Farewell": [
+    "removal",
+    "hate"
+  ],
+  "Flame Discharge": [
+    "removal"
+  ],
+  "Go-Shintai of Ancient Wars": [
+    "removal"
+  ],
+  "Go-Shintai of Hidden Cruelty": [
+    "removal"
+  ],
+  "Gravelighter": [
+    "removal",
+    "card_advantage",
+    "evasion"
+  ],
+  "Hidetsugu Consumes All // Vessel of the All-Consuming": [
+    "removal",
+    "evasion",
+    "hate"
+  ],
+  "Hidetsugu, Devouring Chaos": [
+    "removal"
+  ],
+  "Intercessor's Arrest": [
+    "removal"
+  ],
+  "Inventive Iteration // Living Breakthrough": [
+    "removal",
+    "card_advantage",
+    "evasion"
+  ],
+  "Invoke Despair": [
+    "removal"
+  ],
+  "Jin-Gitaxias, Progress Tyrant": [
+    "removal"
+  ],
+  "Kairi, the Swirling Sky": [
+    "removal",
+    "card_advantage",
+    "evasion"
+  ],
+  "Kami's Flare": [
+    "removal"
+  ],
+  "Kappa Tech-Wrecker": [
+    "removal"
+  ],
+  "Kumano Faces Kakkazan // Etching of Kumano": [
+    "removal"
+  ],
+  "Lethal Exploit": [
+    "removal"
+  ],
+  "Life of Toshiro Umezawa // Memory of Toshiro": [
+    "removal",
+    "fixing_ramp",
+    "lifegain"
+  ],
+  "Lucky Offering": [
+    "removal",
+    "lifegain"
+  ],
+  "Malicious Malfunction": [
+    "removal"
+  ],
+  "March of Otherworldly Light": [
+    "removal"
+  ],
+  "March of Wretched Sorrow": [
+    "removal",
+    "lifegain"
+  ],
+  "Master's Rebuke": [
+    "removal"
+  ],
+  "Mirrorshell Crab": [
+    "removal"
+  ],
+  "Moonsnare Prototype": [
+    "removal",
+    "fixing_ramp"
+  ],
+  "Moonsnare Specialist": [
+    "removal"
+  ],
+  "Ninja's Kunai": [
+    "removal"
+  ],
+  "Oni-Cult Anvil": [
+    "removal",
+    "lifegain"
+  ],
+  "Otawara, Soaring City": [
+    "removal"
+  ],
+  "Repel the Vile": [
+    "removal"
+  ],
+  "Seismic Wave": [
+    "removal"
+  ],
+  "Simian Sling": [
+    "removal"
+  ],
+  "Soul Transfer": [
+    "removal",
+    "card_advantage"
+  ],
+  "Spell Pierce": [
+    "removal"
+  ],
+  "Spinning Wheel Kick": [
+    "removal"
+  ],
+  "Surgehacker Mech": [
+    "removal",
+    "evasion"
+  ],
+  "Tamiyo's Compleation": [
+    "removal"
+  ],
+  "The Fall of Lord Konda // Fragment of Konda": [
+    "removal"
+  ],
+  "The Kami War // O-Kagachi Made Manifest": [
+    "removal",
+    "card_advantage",
+    "evasion"
+  ],
+  "The Long Reach of Night // Animus of Night's Reach": [
+    "removal",
+    "evasion"
+  ],
+  "The Wandering Emperor": [
+    "removal",
+    "combat_trick",
+    "lifegain"
+  ],
+  "Thundering Raiju": [
+    "removal"
+  ],
+  "Touch the Spirit Realm": [
+    "removal",
+    "protection"
+  ],
+  "Twinshot Sniper": [
+    "removal"
+  ],
+  "Twisted Embrace": [
+    "removal"
+  ],
+  "Voltage Surge": [
+    "removal"
+  ],
+  "Wanderer's Intervention": [
+    "removal"
+  ],
+  "You Are Already Dead": [
+    "removal",
+    "card_advantage"
+  ],
+  "A-Prosperous Thief": [
+    "fixing_ramp"
+  ],
+  "Atsushi, the Blazing Sky": [
+    "fixing_ramp",
+    "evasion"
+  ],
+  "Automated Artificer": [
+    "fixing_ramp"
+  ],
+  "Azusa's Many Journeys // Likeness of the Seeker": [
+    "fixing_ramp",
+    "lifegain"
+  ],
+  "Careful Cultivation": [
+    "fixing_ramp"
+  ],
+  "Fable of the Mirror-Breaker // Reflection of Kiki-Jiki": [
+    "fixing_ramp"
+  ],
+  "Grafted Growth": [
+    "fixing_ramp"
+  ],
+  "Greater Tanuki": [
+    "fixing_ramp",
+    "card_advantage",
+    "evasion"
+  ],
+  "Invoke Justice": [
+    "fixing_ramp",
+    "card_advantage"
+  ],
+  "Jugan Defends the Temple // Remnant of the Rising Star": [
+    "fixing_ramp",
+    "evasion",
+    "mana_sink"
+  ],
+  "Kodama of the West Tree": [
+    "fixing_ramp",
+    "card_advantage"
+  ],
+  "Network Terminal": [
+    "fixing_ramp"
+  ],
+  "Orochi Merge-Keeper": [
+    "fixing_ramp"
+  ],
+  "Prosperous Thief": [
+    "fixing_ramp"
+  ],
+  "Shigeki, Jukai Visionary": [
+    "fixing_ramp",
+    "card_advantage",
+    "mana_sink"
+  ],
+  "The Restoration of Eiganjo // Architect of Restoration": [
+    "fixing_ramp",
+    "card_advantage"
+  ],
+  "Undercity Scrounger": [
+    "fixing_ramp"
+  ],
+  "Ambitious Assault": [
+    "card_advantage"
+  ],
+  "Anchor to Reality": [
+    "card_advantage"
+  ],
+  "Boseiju Reaches Skyward // Branch of Boseiju": [
+    "card_advantage"
+  ],
+  "Brilliant Restoration": [
+    "card_advantage"
+  ],
+  "Ecologist's Terrarium": [
+    "card_advantage"
+  ],
+  "Gloomshrieker": [
+    "card_advantage",
+    "evasion"
+  ],
+  "Greasefang, Okiba Boss": [
+    "card_advantage"
+  ],
+  "Heiko Yamazaki, the General": [
+    "card_advantage",
+    "evasion"
+  ],
+  "Historian's Wisdom": [
+    "card_advantage"
+  ],
+  "Imperial Recovery Unit": [
+    "card_advantage"
+  ],
+  "Invoke Calamity": [
+    "card_advantage"
+  ],
+  "Junji, the Midnight Sky": [
+    "card_advantage",
+    "evasion"
+  ],
+  "Kaito Shizuki": [
+    "card_advantage"
+  ],
+  "Kami of Industry": [
+    "card_advantage"
+  ],
+  "Kami of Restless Shadows": [
+    "card_advantage"
+  ],
+  "Kami of Terrible Secrets": [
+    "card_advantage",
+    "lifegain"
+  ],
+  "Kami of Transience": [
+    "card_advantage",
+    "evasion"
+  ],
+  "Kura, the Boundless Sky": [
+    "card_advantage",
+    "evasion"
+  ],
+  "Light-Paws, Emperor's Voice": [
+    "card_advantage"
+  ],
+  "March of Burgeoning Life": [
+    "card_advantage"
+  ],
+  "Norika Yamazaki, the Poet": [
+    "card_advantage"
+  ],
+  "Okiba Salvage": [
+    "card_advantage"
+  ],
+  "Reito Sentinel": [
+    "card_advantage",
+    "mana_sink",
+    "hate"
+  ],
+  "Satsuki, the Living Lore": [
+    "card_advantage"
+  ],
+  "Scrap Welder": [
+    "card_advantage"
+  ],
+  "Season of Renewal": [
+    "card_advantage"
+  ],
+  "Shrine Steward": [
+    "card_advantage"
+  ],
+  "Spirited Companion": [
+    "card_advantage"
+  ],
+  "Spirit-Sister's Call": [
+    "card_advantage"
+  ],
+  "Spring-Leaf Avenger": [
+    "card_advantage"
+  ],
+  "Suit Up": [
+    "card_advantage"
+  ],
+  "Sunblade Samurai": [
+    "card_advantage",
+    "lifegain"
+  ],
+  "Takenuma, Abandoned Mire": [
+    "card_advantage"
+  ],
+  "Tameshi, Reality Architect": [
+    "card_advantage",
+    "mana_sink"
+  ],
+  "Tamiyo, Compleated Sage": [
+    "card_advantage"
+  ],
+  "Unforgiving One": [
+    "card_advantage",
+    "evasion"
+  ],
+  "A-Asari Captain": [
+    "evasion"
+  ],
+  "A-Futurist Operative": [
+    "evasion",
+    "mana_sink"
+  ],
+  "Ao, the Dawn Sky": [
+    "evasion"
+  ],
+  "A-Peerless Samurai": [
+    "evasion"
+  ],
+  "A-Thousand-Faced Shadow": [
+    "evasion"
+  ],
+  "Befriending the Moths // Imperial Moth": [
+    "evasion"
+  ],
+  "Behold the Unspeakable // Vision of the Unspeakable": [
+    "evasion"
+  ],
+  "Biting-Palm Ninja": [
+    "evasion"
+  ],
+  "Blade of the Oni": [
+    "evasion"
+  ],
+  "Bronzeplate Boar": [
+    "evasion"
+  ],
+  "Cloudsteel Kirin": [
+    "evasion"
+  ],
+  "Dragonfly Suit": [
+    "evasion"
+  ],
+  "Eiganjo Uprising": [
+    "evasion"
+  ],
+  "Enthusiastic Mechanaut": [
+    "evasion"
+  ],
+  "Futurist Operative": [
+    "evasion",
+    "mana_sink"
+  ],
+  "Go-Shintai of Boundless Vigor": [
+    "evasion"
+  ],
+  "Go-Shintai of Lost Wisdom": [
+    "evasion"
+  ],
+  "High-Speed Hoverbike": [
+    "evasion"
+  ],
+  "Hinata, Dawn-Crowned": [
+    "evasion"
+  ],
+  "Inkrise Infiltrator": [
+    "evasion",
+    "mana_sink"
+  ],
+  "Ironhoof Boar": [
+    "evasion",
+    "combat_trick"
+  ],
+  "Kyodai, Soul of Kamigawa": [
+    "evasion",
+    "combat_trick",
+    "mana_sink"
+  ],
+  "Mindlink Mech": [
+    "evasion"
+  ],
+  "Mobilizer Mech": [
+    "evasion"
+  ],
+  "Moonfolk Puzzlemaker": [
+    "evasion"
+  ],
+  "Mothrider Patrol": [
+    "evasion",
+    "mana_sink"
+  ],
+  "Mukotai Soulripper": [
+    "evasion"
+  ],
+  "Network Disruptor": [
+    "evasion"
+  ],
+  "Nezumi Bladeblesser": [
+    "evasion"
+  ],
+  "Okiba Reckoner Raid // Nezumi Road Captain": [
+    "evasion",
+    "lifegain"
+  ],
+  "Peerless Samurai": [
+    "evasion"
+  ],
+  "Replication Specialist": [
+    "evasion"
+  ],
+  "Runaway Trash-Bot": [
+    "evasion"
+  ],
+  "Searchlight Companion": [
+    "evasion"
+  ],
+  "Sky-Blessed Samurai": [
+    "evasion"
+  ],
+  "Skyswimmer Koi": [
+    "evasion"
+  ],
+  "Tatsunari, Toad Rider": [
+    "evasion",
+    "lifegain"
+  ],
+  "The Modern Age // Vector Glider": [
+    "evasion"
+  ],
+  "The Shattered States Era // Nameless Conqueror": [
+    "evasion"
+  ],
+  "Thousand-Faced Shadow": [
+    "evasion"
+  ],
+  "Thundersteel Colossus": [
+    "evasion"
+  ],
+  "Tribute to Horobi // Echo of Death's Wail": [
+    "evasion"
+  ],
+  "Walking Skyscraper": [
+    "evasion"
+  ],
+  "Boon of Boseiju": [
+    "combat_trick"
+  ],
+  "Favor of Jukai": [
+    "combat_trick"
+  ],
+  "Jukai Preserver": [
+    "combat_trick"
+  ],
+  "Kindled Fury": [
+    "combat_trick"
+  ],
+  "Light the Way": [
+    "combat_trick"
+  ],
+  "Regent's Authority": [
+    "combat_trick"
+  ],
+  "Return to Action": [
+    "combat_trick",
+    "lifegain"
+  ],
+  "Short Circuit": [
+    "combat_trick"
+  ],
+  "Storyweave": [
+    "combat_trick"
+  ],
+  "Tamiyo's Safekeeping": [
+    "combat_trick",
+    "lifegain"
+  ],
+  "When We Were Young": [
+    "combat_trick",
+    "lifegain"
+  ],
+  "Bearer of Memory": [
+    "mana_sink"
+  ],
+  "Bronze Cudgels": [
+    "mana_sink"
+  ],
+  "Dockside Chef": [
+    "mana_sink"
+  ],
+  "Goro-Goro, Disciple of Ryusei": [
+    "mana_sink"
+  ],
+  "Lion Sash": [
+    "mana_sink",
+    "hate"
+  ],
+  "Mech Hangar": [
+    "mana_sink"
+  ],
+  "Towashi Guide-Bot": [
+    "mana_sink"
+  ],
+  "A-Circuit Mender": [
+    "lifegain"
+  ],
+  "A-Nezumi Prowler": [
+    "lifegain"
+  ],
+  "Bloodfell Caves": [
+    "lifegain"
+  ],
+  "Blossoming Sands": [
+    "lifegain"
+  ],
+  "Blossom Prancer": [
+    "lifegain"
+  ],
+  "Circuit Mender": [
+    "lifegain"
+  ],
+  "Dismal Backwater": [
+    "lifegain"
+  ],
+  "Eater of Virtue": [
+    "lifegain"
+  ],
+  "Era of Enlightenment // Hand of Enlightenment": [
+    "lifegain"
+  ],
+  "Geothermal Kami": [
+    "lifegain"
+  ],
+  "Golden-Tail Disciple": [
+    "lifegain"
+  ],
+  "Jukai Naturalist": [
+    "lifegain"
+  ],
+  "Jungle Hollow": [
+    "lifegain"
+  ],
+  "Leech Gauntlet": [
+    "lifegain"
+  ],
+  "Mechtitan Core": [
+    "lifegain"
+  ],
+  "Mukotai Ambusher": [
+    "lifegain"
+  ],
+  "Nezumi Prowler": [
+    "lifegain"
+  ],
+  "Reckoner's Bargain": [
+    "lifegain"
+  ],
+  "Rugged Highlands": [
+    "lifegain"
+  ],
+  "Scoured Barrens": [
+    "lifegain"
+  ],
+  "Selfless Samurai": [
+    "lifegain"
+  ],
+  "Swiftwater Cliffs": [
+    "lifegain"
+  ],
+  "The Dragon-Kami Reborn // Dragon-Kami's Egg": [
+    "lifegain"
+  ],
+  "Thornwood Falls": [
+    "lifegain"
+  ],
+  "Tranquil Cove": [
+    "lifegain"
+  ],
+  "Wind-Scarred Crag": [
+    "lifegain"
+  ],
+  "Planar Incision": [
+    "protection"
+  ],
+  "Kotose, the Silent Spider": [
+    "hate"
+  ],
+  "Teachings of the Kirin // Kirin-Touched Orochi": [
+    "hate"
+  ]
+}
