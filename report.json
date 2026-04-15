@@ -1,25 +1,22 @@
 {
   "pipeline_run": {
-    "started_at": "2026-04-14T11:04:52.361045+00:00",
-    "completed_at": "2026-04-14T11:25:22.659061+00:00",
-    "duration_sec": 1230.3,
+    "started_at": "2026-04-15T11:00:55.198774+00:00",
+    "completed_at": "2026-04-15T11:16:25.179847+00:00",
+    "duration_sec": 930.0,
     "status": "PARTIAL_SUCCESS"
   },
   "api_stats": {
-    "total_requests": 215,
+    "total_requests": 154,
     "failed_requests": 0,
     "cached_requests": 0
   },
   "intent": {
     "scheduled_events": {
       "TMT": [
-        "PremierDraft",
         "QuickDraft",
-        "TradDraft",
-        "PickTwoDraft"
-      ],
-      "FDN": [
-        "PremierDraft"
+        "PickTwoDraft",
+        "PremierDraft",
+        "TradDraft"
       ],
       "NEO": [
         "PremierDraft"
@@ -67,12 +64,12 @@
     ]
   },
   "execution_summary": {
-    "formats_updated": 12,
+    "formats_updated": 10,
     "formats_skipped": 2,
-    "total_output_kb": 1139,
-    "total_cards_rated": 3202,
+    "total_output_kb": 806,
+    "total_cards_rated": 2168,
     "total_errors": 0,
-    "total_warnings": 2
+    "total_warnings": 1
   },
   "warehouse_state": {
     "total_available_datasets": 16,
@@ -98,28 +95,10 @@
   "datasets_updated": [
     {
       "set": "TMT",
-      "format": "PremierDraft",
-      "filename": "TMT_PremierDraft_All_Data.json.gz",
-      "size_kb": 107,
-      "hash": "cb1346e69d9b470868f0066ce47cc61fb91f215fbbc028d2a6628eb49d6dc8c4",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PremierDraft",
-      "filename": "TMT_PremierDraft_Top_Data.json.gz",
-      "size_kb": 64,
-      "hash": "ee603071366743df13cd62cd6726d96dc06e4c2bf1b1e2c5b3bc7957dbd5820a",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
       "format": "QuickDraft",
       "filename": "TMT_QuickDraft_All_Data.json.gz",
-      "size_kb": 81,
-      "hash": "d49e1d8ed33140b54fb3e1862d2c9a686b8136ccbf57526d8385354ec0f39205",
+      "size_kb": 82,
+      "hash": "240f5a1cab40a7a7fd20a3c64f86fac8187acc5208079e23b268b0ec4fd33f1a",
       "card_count": 195,
       "status": "success"
     },
@@ -128,25 +107,7 @@
       "format": "QuickDraft",
       "filename": "TMT_QuickDraft_Top_Data.json.gz",
       "size_kb": 23,
-      "hash": "6d74108110daa5ebafd2fc39b9b7ae0b82ccddc925b622d8a93a816e7d68217b",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_All_Data.json.gz",
-      "size_kb": 67,
-      "hash": "4d2a92fbb1eb821632ed5f41117e0b95f0e35a5933f37fd7dc7a0df329b40e15",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_Top_Data.json.gz",
-      "size_kb": 38,
-      "hash": "e8c133596cac8c0636e41df8fba2419b5901ae7561393bbb56dc94aa03639059",
+      "hash": "52e56fdbc59ca0a5f11fecf88704d3f8aa311cc4d8894f32b8e107350315746a",
       "card_count": 195,
       "status": "success"
     },
@@ -155,7 +116,7 @@
       "format": "PickTwoDraft",
       "filename": "TMT_PickTwoDraft_All_Data.json.gz",
       "size_kb": 96,
-      "hash": "32077fe68cf245db06597cae9ad0d75894243bd29f7ee9fa91ca34f015912b15",
+      "hash": "27b17931f4932640b5bf4b2916ff2647704770440b8dea2f05a8e229ada8ba78",
       "card_count": 195,
       "status": "success"
     },
@@ -164,26 +125,44 @@
       "format": "PickTwoDraft",
       "filename": "TMT_PickTwoDraft_Top_Data.json.gz",
       "size_kb": 23,
-      "hash": "9265d7ab36bd41c5d66d875f8cbb6ed1c91591cd39d46ac342b2016b6f2b93f5",
+      "hash": "f7e3d718ea0daca5ac5c8ffab7ea8730532d08d0cc7de201f59e0d5067a089e7",
       "card_count": 195,
       "status": "success"
     },
     {
-      "set": "FDN",
+      "set": "TMT",
       "format": "PremierDraft",
-      "filename": "FDN_PremierDraft_All_Data.json.gz",
-      "size_kb": 197,
-      "hash": "4c1bf092d1f285ad10e5d51934d2985ef6a145e9afe7cdb969154c55def5da44",
-      "card_count": 517,
+      "filename": "TMT_PremierDraft_All_Data.json.gz",
+      "size_kb": 109,
+      "hash": "26edd64978d43ddd308d50cd5fc2ecf385b574522437c345998269d250f5522a",
+      "card_count": 195,
       "status": "success"
     },
     {
-      "set": "FDN",
+      "set": "TMT",
       "format": "PremierDraft",
-      "filename": "FDN_PremierDraft_Top_Data.json.gz",
-      "size_kb": 138,
-      "hash": "1e755b697631127515a7953b721bac7c32cf877f353844d94ff542e01af77289",
-      "card_count": 517,
+      "filename": "TMT_PremierDraft_Top_Data.json.gz",
+      "size_kb": 64,
+      "hash": "a62998d1caf5d22544b7a128e975b0e162a6b20eae1eb2283b7e76a110976823",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "TradDraft",
+      "filename": "TMT_TradDraft_All_Data.json.gz",
+      "size_kb": 67,
+      "hash": "25962b25051d78caa730637232f24f3fd036735ec38ef5128e452c02c023fb58",
+      "card_count": 195,
+      "status": "success"
+    },
+    {
+      "set": "TMT",
+      "format": "TradDraft",
+      "filename": "TMT_TradDraft_Top_Data.json.gz",
+      "size_kb": 37,
+      "hash": "af736775619e55fe0c804dc999ae3a5980a9e825e1ece621f77ec1c2d651215a",
+      "card_count": 195,
       "status": "success"
     },
     {
@@ -191,7 +170,7 @@
       "format": "PremierDraft",
       "filename": "NEO_PremierDraft_All_Data.json.gz",
       "size_kb": 185,
-      "hash": "84a951d858e31f5aebd898701519eaae62e3bf6ab712bae5e2304207c0815c8b",
+      "hash": "96a5ea842e82cbd2624325fde4bda89605b152fc8c12d0c2429125dcbdae4559",
       "card_count": 304,
       "status": "success"
     },
@@ -200,7 +179,7 @@
       "format": "PremierDraft",
       "filename": "NEO_PremierDraft_Top_Data.json.gz",
       "size_kb": 120,
-      "hash": "3a559d82a70e6139bcb9c7eb7dbd5a47f5e5aa39ac8ca47a7b75afebf5b8e644",
+      "hash": "0fed9b4ca10f1c7a416a4e45b186d8378ddb51bc76491b24031973dfe902a329",
       "card_count": 304,
       "status": "success"
     }
@@ -220,13 +199,7 @@
   "errors": [],
   "warnings": [
     {
-      "time": "2026-04-14T11:13:44.936402+00:00",
-      "level": "WARNING",
-      "logger": "server.utils",
-      "message": "Network error on https://www.17lands.com/card_ratings/data?expansion=FDN&format=PremierDraft&start_date=2019-01-01&end_date=2026-04-14: HTTPSConnectionPool(host='www.17lands.com', port=443): Read timed out. (read timeout=30). Retrying in 5.0s..."
-    },
-    {
-      "time": "2026-04-14T11:14:11.844271+00:00",
+      "time": "2026-04-15T11:09:34.704745+00:00",
       "level": "WARNING",
       "logger": "server.utils",
       "message": "HTTP 403 on www.17lands.com. Backing off 180.0s to cool down IP..."
