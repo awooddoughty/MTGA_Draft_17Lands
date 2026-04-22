@@ -1,30 +1,17 @@
 {
   "pipeline_run": {
-    "started_at": "2026-04-21T11:08:39.724944+00:00",
-    "completed_at": "2026-04-21T11:24:11.977985+00:00",
-    "duration_sec": 932.3,
-    "status": "PARTIAL_SUCCESS"
+    "started_at": "2026-04-22T11:07:02.696458+00:00",
+    "completed_at": "2026-04-22T11:07:02.696733+00:00",
+    "duration_sec": 0.0,
+    "status": "SUCCESS"
   },
   "api_stats": {
-    "total_requests": 156,
+    "total_requests": 0,
     "failed_requests": 0,
     "cached_requests": 0
   },
   "intent": {
-    "scheduled_events": {
-      "TMT": [
-        "QuickDraft",
-        "PickTwoDraft",
-        "TradDraft",
-        "PremierDraft"
-      ],
-      "NEO": [
-        "PremierDraft"
-      ],
-      "CUBE-POWERED": [
-        "Cube"
-      ]
-    },
+    "scheduled_events": {},
     "archetypes_targeted": [
       "All Decks",
       "W",
@@ -64,145 +51,26 @@
     ]
   },
   "execution_summary": {
-    "formats_updated": 10,
-    "formats_skipped": 2,
-    "total_output_kb": 815,
-    "total_cards_rated": 2168,
+    "formats_updated": 0,
+    "formats_skipped": 0,
+    "total_output_kb": 0,
+    "total_cards_rated": 0,
     "total_errors": 0,
     "total_warnings": 1
   },
   "warehouse_state": {
-    "total_available_datasets": 16,
-    "available_keys": [
-      "TMT_PickTwoDraft_All",
-      "TMT_PickTwoDraft_Top",
-      "TMT_TradDraft_All",
-      "TMT_TradDraft_Top",
-      "TMT_PremierDraft_All",
-      "TMT_PremierDraft_Top",
-      "BLB_PremierDraft_All",
-      "BLB_PremierDraft_Top",
-      "FDN_QuickDraft_All",
-      "FDN_QuickDraft_Top",
-      "TMT_QuickDraft_All",
-      "TMT_QuickDraft_Top",
-      "FDN_PremierDraft_All",
-      "FDN_PremierDraft_Top",
-      "NEO_PremierDraft_All",
-      "NEO_PremierDraft_Top"
-    ]
+    "total_available_datasets": 0,
+    "available_keys": []
   },
-  "datasets_updated": [
-    {
-      "set": "TMT",
-      "format": "QuickDraft",
-      "filename": "TMT_QuickDraft_All_Data.json.gz",
-      "size_kb": 86,
-      "hash": "ae50eaefd46c9e44d6e09a4ab9ffa4c97c27a5b6c87578d1698d13fa3616592b",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "QuickDraft",
-      "filename": "TMT_QuickDraft_Top_Data.json.gz",
-      "size_kb": 23,
-      "hash": "856d5696c558167c93d2696547c8e82922ab4e2ff0c54e4da8217f293078112d",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PickTwoDraft",
-      "filename": "TMT_PickTwoDraft_All_Data.json.gz",
-      "size_kb": 97,
-      "hash": "080745a1a25d04b73d56a02838e181c7bf461702dd96a2435047255a0f726854",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PickTwoDraft",
-      "filename": "TMT_PickTwoDraft_Top_Data.json.gz",
-      "size_kb": 23,
-      "hash": "eceda6803c68c26134c8a1b2e3389e486a26071131c3c22b07f23220b2d4e2dd",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_All_Data.json.gz",
-      "size_kb": 67,
-      "hash": "e98c3e90edd13339169cb7fa7a92781dfdf339e64906118966d1c1acbf76b674",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "TradDraft",
-      "filename": "TMT_TradDraft_Top_Data.json.gz",
-      "size_kb": 40,
-      "hash": "08cf8f4c367f9c39be128a28d45c3d4f5cd67129ca45a7bcc49ec0d9b5ffef6e",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PremierDraft",
-      "filename": "TMT_PremierDraft_All_Data.json.gz",
-      "size_kb": 110,
-      "hash": "06ca2be56959b3a645e85df7e7e7e6525e5c19f9a3da9dc25612c2d82d81d60d",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "TMT",
-      "format": "PremierDraft",
-      "filename": "TMT_PremierDraft_Top_Data.json.gz",
-      "size_kb": 64,
-      "hash": "2163978b4424ae2eabaa63ad12f4896e3c7cd295740bfd582b806660c600fc7c",
-      "card_count": 195,
-      "status": "success"
-    },
-    {
-      "set": "NEO",
-      "format": "PremierDraft",
-      "filename": "NEO_PremierDraft_All_Data.json.gz",
-      "size_kb": 185,
-      "hash": "87161dbbd46cc6335ffd2863a09ec14f39950385a79230c2b8be58b9408a4e29",
-      "card_count": 304,
-      "status": "success"
-    },
-    {
-      "set": "NEO",
-      "format": "PremierDraft",
-      "filename": "NEO_PremierDraft_Top_Data.json.gz",
-      "size_kb": 120,
-      "hash": "7c3fe615f8a836d713720679f4359d7f589aa13949613f5cbc7bbcae0ee752c0",
-      "card_count": 304,
-      "status": "success"
-    }
-  ],
-  "datasets_skipped": [
-    {
-      "set": "CUBE-POWERED",
-      "format": "Cube",
-      "reason": "No Scryfall base cards"
-    },
-    {
-      "set": "CUBE-POWERED",
-      "format": "Cube",
-      "reason": "No Scryfall base cards"
-    }
-  ],
+  "datasets_updated": [],
+  "datasets_skipped": [],
   "errors": [],
   "warnings": [
     {
-      "time": "2026-04-21T11:17:38.768699+00:00",
+      "time": "2026-04-22T11:07:02.696680+00:00",
       "level": "WARNING",
-      "logger": "server.utils",
-      "message": "HTTP 403 on www.17lands.com. Backing off 180.0s to cool down IP..."
+      "logger": "__main__",
+      "message": "No active events found in the calendar for today. Exiting."
     }
   ]
 }
