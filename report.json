@@ -1,7 +1,7 @@
 {
   "pipeline_run": {
-    "started_at": "2026-10-25T14:08:00.580439+00:00",
-    "completed_at": "2026-10-25T14:08:00.580632+00:00",
+    "started_at": "2026-10-26T16:34:16.102995+00:00",
+    "completed_at": "2026-10-26T16:34:16.103236+00:00",
     "duration_sec": 0.0,
     "status": "SUCCESS"
   },
@@ -67,7 +67,7 @@
   "errors": [],
   "warnings": [
     {
-      "time": "2026-10-25T14:08:00.580596+00:00",
+      "time": "2026-10-26T16:34:16.103188+00:00",
       "level": "WARNING",
       "logger": "__main__",
       "message": "No active events found in the calendar for today. Exiting."
